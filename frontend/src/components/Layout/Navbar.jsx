@@ -91,20 +91,21 @@ const Navbar = () => {
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
   const navigateTo = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
-        { withCredentials: true }
-      );
-      toast.success(response.data.message);
-      setIsAuthorized(false);
-      navigateTo("/login");
-    } catch (error) {
-      toast.error(error.response.data.message);
-      setIsAuthorized(true);
-    }
-  };
+ const handleLogout = async () => {
+  try {
+    const response = await axios.get(
+      "https://careerconnect-stm.onrender.com/api/v1/user/logout",
+      { withCredentials: true }
+    );
+    toast.success(response.data.message);
+    setIsAuthorized(false);
+    navigateTo("/login");
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Logout failed");
+    setIsAuthorized(true);
+  }
+};
+
 
   return (
     <>
