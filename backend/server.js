@@ -6,10 +6,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({
-  origin: "https://career-connect-stm.vercel.app", // frontend deployed domain
-  credentials: true
-}));
+const corsOptions = {
+  origin: "https://career-connect-stm.vercel.app",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // <-- handles preflight (important!)
 
 app.use(express.json());
 app.use(cookieParser());
