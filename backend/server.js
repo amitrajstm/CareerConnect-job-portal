@@ -1,5 +1,11 @@
 import app from "./app.js";
 import cloudinary from "cloudinary";
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://career-connect-stm.vercel.app", // frontend domain
+  credentials: true
+}));
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
